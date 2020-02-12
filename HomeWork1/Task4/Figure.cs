@@ -6,33 +6,37 @@ namespace Task4
 {
     class Figure
     {
-        Point point1, point2, point3, point4, point5;
+        Point[] points;
         string type;
 
         public Figure(Point point1, Point point2, Point point3, Point point4, Point point5)
         {
-            this.point1 = point1;
-            this.point2 = point2;
-            this.point3 = point3;
-            this.point4 = point4;
-            this.point5 = point5;
+            this.points = new Point[5];
+            this.points[0] = point1;
+            this.points[1] = point2;
+            this.points[2] = point3;
+            this.points[3] = point4;
+            this.points[4] = point5;
+            
             this.type = "пятиугольник";
         }
 
         public Figure(Point point1, Point point2, Point point3, Point point4)
         {
-            this.point1 = point1;
-            this.point2 = point2;
-            this.point3 = point3;
-            this.point4 = point4;
+            this.points = new Point[4];
+            this.points[0] = point1;
+            this.points[1] = point2;
+            this.points[2] = point3;
+            this.points[3] = point4;
             this.type = "четырехугольник";
         }
 
         public Figure(Point point1, Point point2, Point point3)
         {
-            this.point1 = point1;
-            this.point2 = point2;
-            this.point3 = point3;
+            this.points = new Point[3];
+            this.points[0] = point1;
+            this.points[1] = point2;
+            this.points[2] = point3;
             this.type = "треугольник";
         }
 
@@ -43,24 +47,15 @@ namespace Task4
 
         public void PerimeterCalculator()
         {
-            double perimeter;
-            switch (type)
+            double perimeter = 0d;
+
+            for (int i = 0; i < points.Length - 1; i++)
             {
-                case "пятиугольник":
-                    perimeter = LengthSide(point1, point2) + LengthSide(point2, point3) + LengthSide(point3, point4) + LengthSide(point4, point5) + LengthSide(point5, point1);
-                    Console.WriteLine($"Пятиугольник. Периметр: {perimeter}");
-                    break;
-                case "четырехугольник":
-                    perimeter = LengthSide(point1, point2) + LengthSide(point2, point3) + LengthSide(point3, point4) + LengthSide(point4, point1);
-                    Console.WriteLine($"Четырехугольник. Периметр: {perimeter}");
-                    break;
-                case "треугольник":
-                    perimeter = LengthSide(point1, point2) + LengthSide(point2, point3) + LengthSide(point3, point1);
-                    Console.WriteLine($"Треугольник. Периметр: {perimeter}");
-                    break;
-                default:
-                    break;
+                perimeter += LengthSide(points[i], points[i + 1]);
             }
+            perimeter += LengthSide(this.points[0], points[this.points.Length - 1]);
+            Console.WriteLine($"Тип: {this.type}\nПериметр: {perimeter}");
+
         }
     }
 }
