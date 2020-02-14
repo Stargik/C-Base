@@ -7,7 +7,13 @@ namespace Task3
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Employee employee = new Employee("Max", "Jonson")
+            {
+                Experience = 2,
+                Position = "manager"
+            };
+
+            employee.ShowSalary();
         }
     }
 }
