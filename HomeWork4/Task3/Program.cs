@@ -14,14 +14,14 @@ namespace Task3
             {
                 case "record":
                     Console.WriteLine("Available action in this mode:");
-                    IRecodable recodable = player;
+                    IRecodable recodable = player as IRecodable;
                     recodable.Record();
                     recodable.Pause();
                     recodable.Stop();
                     break;
                 case "play":
                     Console.WriteLine("Available action in this mode:");
-                    IPlayable playable = player;
+                    IPlayable playable = player as IPlayable;
                     playable.Play();
                     playable.Pause();
                     playable.Stop();
